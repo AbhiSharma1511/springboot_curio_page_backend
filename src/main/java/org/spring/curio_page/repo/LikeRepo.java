@@ -1,7 +1,7 @@
 package org.spring.curio_page.repo;
 
 import org.spring.curio_page.model.Like;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
-public interface LikeRepo extends JpaRepository<Like,Integer> {
+public interface LikeRepo extends MongoRepository<Like,Integer> {
 }

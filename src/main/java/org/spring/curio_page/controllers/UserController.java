@@ -4,10 +4,8 @@ package org.spring.curio_page.controllers;
 import org.spring.curio_page.model.User;
 import org.spring.curio_page.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,7 +17,7 @@ public class UserController {
 
     @GetMapping("/")
     public String home() {
-        return "Hello World";
+        return "Welcome to the Curio Page Website🙂!";
     }
 
     @GetMapping("/users")
@@ -27,9 +25,19 @@ public class UserController {
         return userService.findAll();
     }
 
-    @PostMapping("/add")
-    public boolean add(@RequestBody User user) {
+    @PostMapping("/sign_up")
+    public ResponseEntity<String> SignUp(@RequestBody User user) {
         return userService.addUser(user);
+    }
+
+    @GetMapping("/login")
+    public ResponseEntity<String> Login(@RequestParam String username, @RequestParam String password) {
+        return userService.loginUser(username, password);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public boolean deleteUser(@RequestBody String username, @RequestBody String email) {
+        return userService.deleteUser(username, email);
     }
 
 }

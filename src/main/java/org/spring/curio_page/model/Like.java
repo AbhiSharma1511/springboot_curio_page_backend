@@ -1,19 +1,14 @@
 package org.spring.curio_page.model;
 
-import jakarta.persistence.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-@Entity
-@Table(name = "likes")
+@Document(collection = "likes")
 public class Like {
+
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    @ManyToOne
-    @JoinColumn(name = "user_id")
+    private String like_id;
     private User user;
-
-    @ManyToOne
-    @JoinColumn(name = "post_id")
     private Post post;
+
 }
